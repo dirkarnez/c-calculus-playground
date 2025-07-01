@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdio>
 
 void use_vector_double(const std::vector<double> &vec) {
     std::cout << "size() = " << vec.size() << ", capacity()=" << vec.capacity() << "\n";
@@ -9,8 +10,20 @@ void use_vector_double(const std::vector<double> &vec) {
         std::cout << "vec[]=|" << str << "|\n";
     }
 }
- 
+
+void get_derivative_function(const std::vector<double> &coefficients) {
+    int degree = coefficients.size();
+    int derivative[degree - 1];
+    
+    for (int i = 0; i < degree - 1; i++) { // Print up to degree - 1
+        if (derivative[i] != 0) {
+            printf("%d*x^%d ", derivative[i], (degree - 2 - i));
+        }
+    }
+}
+
 EMSCRIPTEN_BINDINGS(EmbindVectorStringDemo) {
     emscripten::register_vector<double>("DoubleList");
     emscripten::function("use_vector_double", &use_vector_double);
+    emscripten::function("get_derivative_function", &get_derivative_function);
 }
