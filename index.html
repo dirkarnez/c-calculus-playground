@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <script>
+    var Module = {
+      onRuntimeInitialized: function() {  // Make sure EMSCRIPTEN_BINDINGS are called before we try to use them
+        const vec = new Module.DoubleList();  // Allocates std::vector<std::string> which is managed by JS
+        vec.push_back(1);  // std::string and JavaScript strings are automatically interconverted
+        vec.push_back(2);
+        vec.push_back(3);
+        Module.use_vector_double(vec);
+        vec.delete();  // Required to avoid C++ memory leaks and undestructed object
+      }
+    };
+  </script>
+  <script src="./calculus.js"></script>
+</html>
