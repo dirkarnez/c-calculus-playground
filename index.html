@@ -9,6 +9,14 @@
         vec.push_back(3);
         Module.use_vector_double(vec);
         vec.delete();  // Required to avoid C++ memory leaks and undestructed object
+
+
+        const vec = new Module.DoubleList();  // Allocates std::vector<std::string> which is managed by JS
+        vec.push_back(1);  // std::string and JavaScript strings are automatically interconverted
+        vec.push_back(0);
+        vec.push_back(0);
+        Module.get_derivative_function(vec);
+        vec.delete();  // Required to avoid C++ memory leaks and undestructed object
       }
     };
   </script>
