@@ -3,16 +3,16 @@
 #include <string>
 #include <vector>
 
-void use_vector_double(const std::vector<double> &vec) {
-    std::cout << "size() = " << vec.size() << ", capacity()=" << vec.capacity() << "\n";
-    for (const auto &str : vec) {
-        std::cout << "vec[]=|" << str << "|\n";
-    }
-}
+// void use_vector_double(const std::vector<double> &vec) {
+//     std::cout << "size() = " << vec.size() << ", capacity()=" << vec.capacity() << "\n";
+//     for (const auto &str : vec) {
+//         std::cout << "vec[]=|" << str << "|\n";
+//     }
+// }
 
 void get_derivative_function(const std::vector<double> &coefficients) {
     int degree = coefficients.size();
-    int derivative[degree - 1] = {0};
+    std::vector<double> derivative(degree - 1, 0);
     
     for (int i = 0; i < degree - 1; i++) {
         // Derivative of a_n * x^n is n * a_n * x^(n-1)
@@ -28,6 +28,6 @@ void get_derivative_function(const std::vector<double> &coefficients) {
 
 EMSCRIPTEN_BINDINGS(EmbindVectorStringDemo) {
     emscripten::register_vector<double>("DoubleList");
-    emscripten::function("use_vector_double", &use_vector_double);
+    // emscripten::function("use_vector_double", &use_vector_double);
     emscripten::function("get_derivative_function", &get_derivative_function);
 }
