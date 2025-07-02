@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <cstdio>
 
 void use_vector_double(const std::vector<double> &vec) {
     std::cout << "size() = " << vec.size() << ", capacity()=" << vec.capacity() << "\n";
@@ -13,11 +12,16 @@ void use_vector_double(const std::vector<double> &vec) {
 
 void get_derivative_function(const std::vector<double> &coefficients) {
     int degree = coefficients.size();
-    int derivative[degree - 1];
+    int derivative[degree - 1] = {0};
     
+    for (int i = 0; i < degree - 1; i++) {
+        // Derivative of a_n * x^n is n * a_n * x^(n-1)
+        derivative[i] = coefficients[i] * (degree - 1 - i);
+    }
+
     for (int i = 0; i < degree - 1; i++) { // Print up to degree - 1
         if (derivative[i] != 0) {
-            printf("%d*x^%d ", derivative[i], (degree - 2 - i));
+            std::cout << derivative[i] << "*x^" << (degree - 2 - i);
         }
     }
 }
