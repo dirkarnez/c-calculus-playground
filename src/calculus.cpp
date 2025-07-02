@@ -13,6 +13,7 @@ using namespace emscripten;
 // }
 
 std::vector<double> get_derivative_function(const std::vector<double> &coefficients) {
+    std::cout << "coefficients size() = " << coefficients.size() << ", capacity()=" << coefficients.capacity() << "\n";
     int degree = coefficients.size();
     std::vector<double> derivative(degree - 1, 0);
     
