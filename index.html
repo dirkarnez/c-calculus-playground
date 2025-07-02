@@ -3,12 +3,12 @@
   <script>
     var Module = {
       onRuntimeInitialized: function() {  // Make sure EMSCRIPTEN_BINDINGS are called before we try to use them
-        const vec1 = new Module.DoubleList();  // Allocates std::vector<std::string> which is managed by JS
-        vec1.push_back(1);  // std::string and JavaScript strings are automatically interconverted
-        vec1.push_back(2);
-        vec1.push_back(3);
-        Module.use_vector_double(vec1);
-        vec1.delete();  // Required to avoid C++ memory leaks and undestructed object
+        // const vec1 = new Module.DoubleList();  // Allocates std::vector<std::string> which is managed by JS
+        // vec1.push_back(1);  // std::string and JavaScript strings are automatically interconverted
+        // vec1.push_back(2);
+        // vec1.push_back(3);
+        // Module.use_vector_double(vec1);
+        // vec1.delete();  // Required to avoid C++ memory leaks and undestructed object
 
 
         const vec2 = new Module.DoubleList();  // Allocates std::vector<std::string> which is managed by JS
